@@ -1,4 +1,4 @@
-let registerBtn = document.querySelector(".register-btn");
+let submitBtn = document.querySelector(".submit-btn");
 
  function getDate(){
   axios.get('https://jsonplaceholder.typicode.com/users')
@@ -10,19 +10,24 @@ let registerBtn = document.querySelector(".register-btn");
     console.log(response.config);
   });
  }
+ console.log(getDate());
 
 
-  registerBtn.addEventListener("click", function(){
-    let name = document.querySelector(".input-name");
-    let email = document.querySelector(".input-email");
+
+
+ 
+submitBtn.addEventListener("click", function(e){
+    e.preventDefault();
+    let title = document.querySelector(".title");
+    let body = document.querySelector(".body");
     
     const data = {
-      postId: 1,
-      id: 6,
-      name: name.value,
-      email: email.value,
-      body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec leo malesuada, lobortis nunc a, ultrices mi.'
+      userid: "2",
+      id: "5",
+      title: `${title.value}`,
+      body: `${body.value}`
     };
+
 
     postData(data);
   })
@@ -30,7 +35,7 @@ let registerBtn = document.querySelector(".register-btn");
   
 // post data
  function postData(data){
-    axios.post('https://jsonplaceholder.typicode.com/users', data)
+    axios.post('https://jsonplaceholder.typicode.com/posts',data)
     .then(function (response) {
       console.log(response);
     })
